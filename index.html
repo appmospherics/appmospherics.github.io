@@ -23,7 +23,7 @@
   --bg: #F6F5F1; --surface: #FFFFFF; --ink: #2E2C29; --muted: #5F5C56; --line: #E4E2DC;
   --accent: #2E2C29; --accent-ink: #F6F5F1; --accent-soft: #FBEFC6;
   /* Score scale: one bright state and two shades. Good is butter yellow, Caution is gray, Poor is deep slate. */
-  --green: #F6CE4E; --amber: #9A978F; --red: #1C2430; --none: #C9C6BE;
+  --green: #F6CE4E; --amber: #9A978F; --red: #1C2430; --none: #C9C6BE; --none-ink: #2E2C29;
   --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #6B6862;
   /* Patterns: only Good match is filled (butter); the other quadrants stay quiet */
   --grid: #ECEAE4; --band: rgba(246,206,78,0.5); --flag: #1C2430;
@@ -40,7 +40,7 @@
   :root:not([data-theme="light"]) {
     --bg: #1C1B19; --surface: #262522; --ink: #EDEBE6; --muted: #ABA79F; --line: #3A3835;
     --accent: #F6CE4E; --accent-ink: #1C1B19; --accent-soft: #4A4127;
-    --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955;
+    --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955; --none-ink: #F2F1EC;
     --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #ABA79F;
     --grid: #33312E; --band: rgba(246,206,78,0.35); --flag: #C9D2E3;
     --q-match: #2E2C29; --q-hidden: #ABA79F; --q-despite: #ABA79F; --q-avoid: #ABA79F;
@@ -51,7 +51,7 @@
 :root[data-theme="dark"] {
   --bg: #1C1B19; --surface: #262522; --ink: #EDEBE6; --muted: #ABA79F; --line: #3A3835;
   --accent: #F6CE4E; --accent-ink: #1C1B19; --accent-soft: #4A4127;
-  --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955;
+  --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955; --none-ink: #F2F1EC;
   --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #ABA79F;
   --grid: #33312E; --band: rgba(246,206,78,0.35); --flag: #C9D2E3;
   --q-match: #2E2C29; --q-hidden: #ABA79F; --q-despite: #ABA79F; --q-avoid: #ABA79F;
@@ -196,13 +196,23 @@ table.breakdown td:last-child { text-align: right; font-weight: 700; white-space
 .week-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
 .week-row .day { width: 92px; flex: none; }
 .week-row .dots { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
 .cal .hd { font-size: 13px; color: var(--muted); text-align: center; padding-bottom: 4px; }
 .cal .cell { aspect-ratio: 1; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); padding: 4px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; font-size: 13px; cursor: pointer; }
 .cal .cell.blank { visibility: hidden; }
 .cal .cell.today { border-color: var(--accent); border-width: 2px; }
 .cal .cell .dots { display: flex; gap: 3px; flex-wrap: wrap; }
 .cal .cell .dot { width: 8px; height: 8px; }
+.scorechip { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 34px; padding: 0 8px; box-sizing: border-box; border: 0; border-radius: 9px; flex: none; font: inherit; font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; background: var(--none); color: var(--none-ink); }
+.scorechip.green { background: var(--green); color: #2E2C29; } .scorechip.yellow { background: var(--amber); color: #2E2C29; } .scorechip.red { background: var(--red); color: #FFFFFF; }
+button.scorechip { cursor: pointer; }
+.week-row .dots { gap: 8px; }
+.cal .cell { min-width: 0; overflow: hidden; aspect-ratio: auto; min-height: 66px; }
+.cal .cell .dots { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cal .cell .scorechip { min-width: 0; height: 17px; padding: 0 3px; border-radius: 4px; font-size: 11px; line-height: 1; }
+.monthhd { margin: 8px 0 4px; font-size: 16px; color: var(--muted); }
+.cal .cell .more { font-size: 11px; color: var(--muted); }
+
 
 /* Bottom navigation */
 .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
@@ -273,7 +283,7 @@ table.breakdown td:last-child { text-align: right; font-weight: 700; white-space
 <radialGradient id="amb" cx="0.2" cy="0.85" r="0.38"><stop offset="0" stop-color="#F3C83E" stop-opacity="0.72"/><stop offset="1" stop-color="#F3C83E" stop-opacity="0"/></radialGradient>
 <radialGradient id="amg" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F3C83E"/><stop offset="1" stop-color="#F3C83E" stop-opacity="0"/></radialGradient>
 <filter id="amh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
-<clipPath id="amc"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#amc)"><rect width="100" height="100" fill="#FFFFFF"/><rect width="100" height="100" fill="url(#amb)"/><rect width="100" height="100" fill="url(#ama)"/></g><g transform="translate(16 -16)"><ellipse cx="44" cy="80" rx="14" ry="5" fill="url(#amg)" opacity="0.85"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#F3C83E" fill-rule="evenodd" filter="url(#amh)" transform="translate(0 1)"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#2E2C29" fill-rule="evenodd"/></g></svg><div><p class="wordmark">app<span>mospherics</span></p><span class="tagline">READ THE ROOM</span></div></div>
+<clipPath id="amc"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#amc)"><rect width="100" height="100" fill="#FFFFFF"/><rect width="100" height="100" fill="url(#ama)"/></g><g transform="translate(16 -16)"><ellipse cx="44" cy="80" rx="14" ry="5" fill="url(#amg)" opacity="0.85"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#F3C83E" fill-rule="evenodd" filter="url(#amh)" transform="translate(0 1)"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#2E2C29" fill-rule="evenodd"/></g></svg><div><p class="wordmark">app<span>mospherics</span></p><span class="tagline">READ THE ROOM</span></div></div>
     <span class="mode-note" id="modeNote"></span>
   </header>
   <main id="view"></main>
@@ -1165,9 +1175,8 @@ function onboard() {
 function scanListItem(s) {
   const d = new Date(s.timestamp_local), sc = scoreScan(s, state.weights);
   return h('button', { type: 'button', class: 'listitem', onclick: () => go('result', { id: s.scan_id }) },
-    h('span', { class: 'lvlbar ' + sc.yourLight, 'aria-hidden': 'true' }),
-    h('span', { class: 'grow' }, h('span', { class: 'title' }, placeName(s)), h('span', { class: 'sub' }, `${sc.yourScore == null ? 'No score' : lightWord(sc.yourLight)} · ${fmtDay(d, { weekday: 'short', month: 'short', day: 'numeric' })}, ${fmtTime(d)}`)),
-    h('span', { class: 'num', 'aria-label': sc.yourScore == null ? 'No score' : `Your score ${sc.yourScore}, ${lightWord(sc.yourLight)}` }, sc.yourScore == null ? '–' : sc.yourScore));
+    h('span', { class: 'scorechip ' + (sc.yourScore == null ? '' : sc.yourLight), 'aria-label': sc.yourScore == null ? 'No score' : `Your score ${sc.yourScore}, ${lightWord(sc.yourLight)}` }, sc.yourScore == null ? '–' : String(sc.yourScore)),
+    h('span', { class: 'grow' }, h('span', { class: 'title' }, placeName(s)), h('span', { class: 'sub' }, `${sc.yourScore == null ? 'No score' : lightWord(sc.yourLight)} · ${fmtDay(d, { weekday: 'short', month: 'short', day: 'numeric' })}, ${fmtTime(d)}`)));
 }
 routes.home = () => {
   const recent = state.scans.slice().sort((a, b) => new Date(b.timestamp_local) - new Date(a.timestamp_local)).slice(0, 3);
@@ -1641,7 +1650,13 @@ function calendarView(redraw) {
   const shift = dir => { const d = new Date(a); if (tl.mode === 'day') d.setDate(d.getDate() + dir); else if (tl.mode === 'week') d.setDate(d.getDate() + 7 * dir); else d.setMonth(d.getMonth() + dir, 1); tl.anchor = d; redraw(); };
   const light = s => scoreScan(s, state.weights).yourLight;
   let title, body;
-  if (tl.mode === 'day') {
+  if (tl.mode === 'all') {
+    const all = state.scans.slice().sort((x, y) => new Date(y.timestamp_local) - new Date(x.timestamp_local));
+    const groups = [];
+    all.forEach(s => { const d = new Date(s.timestamp_local), k = d.getFullYear() + '-' + d.getMonth(); if (!groups.length || groups[groups.length - 1].k !== k) groups.push({ k, d, list: [] }); groups[groups.length - 1].list.push(s); });
+    body = h('div', { class: 'stack' }, h('p', { class: 'muted small', style: 'margin:0' }, `${plural(all.length, 'scan')}, newest first.`),
+      groups.map(g => h('div', {}, h('h3', { class: 'monthhd' }, fmtDay(g.d, { month: 'long', year: 'numeric' })), h('div', {}, g.list.map(scanListItem)))));
+  } else if (tl.mode === 'day') {
     title = fmtDay(a, { weekday: 'long', month: 'long', day: 'numeric' });
     const list = byDay[dateKey(a)] || [];
     body = list.length ? h('div', {}, list.map(scanListItem)) : h('p', { class: 'muted' }, 'No scans this day.');
@@ -1654,7 +1669,7 @@ function calendarView(redraw) {
       return h('div', { class: 'week-row' },
         h('button', { type: 'button', class: 'linkbtn day', onclick: () => openDay(d) }, fmtDay(d, { weekday: 'short', day: 'numeric' })),
         h('div', { class: 'dots' }, list.length
-          ? list.map(s => h('button', { type: 'button', class: 'dot ' + light(s), 'aria-label': `${placeName(s)}, ${lightWord(light(s))}`, onclick: () => go('result', { id: s.scan_id }) }))
+          ? list.map(s => { const sc = scoreScan(s, state.weights); return h('button', { type: 'button', class: 'scorechip ' + (sc.yourScore == null ? '' : sc.yourLight), 'aria-label': `${placeName(s)}, ${sc.yourScore == null ? 'no score' : `score ${sc.yourScore}, ${lightWord(sc.yourLight)}`}`, onclick: () => go('result', { id: s.scan_id }) }, sc.yourScore == null ? '–' : String(sc.yourScore)); })
           : h('span', { class: 'muted small' }, 'No scans')));
     }));
   } else {
@@ -1667,18 +1682,18 @@ function calendarView(redraw) {
     for (let n = 1; n <= daysIn; n++) {
       const d = new Date(a.getFullYear(), a.getMonth(), n), k = dateKey(d), list = byDay[k] || [];
       cells.push(h('button', { type: 'button', class: 'cell' + (k === todayKey ? ' today' : ''), 'aria-label': `${fmtDay(d, { month: 'long', day: 'numeric' })}, ${plural(list.length, 'scan')}`, onclick: () => openDay(d) },
-        h('span', {}, n), h('span', { class: 'dots' }, list.slice(0, 6).map(s => h('span', { class: 'dot ' + light(s) })))));
+        h('span', {}, n), h('span', { class: 'dots', 'aria-hidden': 'true' }, list.slice(0, list.length > 2 ? 1 : 2).map(s => { const sc = scoreScan(s, state.weights); return h('span', { class: 'scorechip ' + (sc.yourScore == null ? '' : sc.yourLight) }, sc.yourScore == null ? '–' : String(sc.yourScore)); }), list.length > 2 && h('span', { class: 'more' }, '+' + (list.length - 1)))));
     }
     body = h('div', { class: 'cal' }, cells);
   }
   return [
-    h('div', { class: 'tabs', role: 'group', 'aria-label': 'Calendar range' }, ['day', 'week', 'month'].map(m => h('button', { type: 'button', 'aria-pressed': String(tl.mode === m), onclick: () => { tl.mode = m; redraw(); } }, cap(m)))),
-    h('div', { class: 'row spread' },
+    h('div', { class: 'tabs', role: 'group', 'aria-label': 'Calendar range' }, ['day', 'week', 'month', 'all'].map(m => h('button', { type: 'button', 'aria-pressed': String(tl.mode === m), onclick: () => { tl.mode = m; redraw(); } }, cap(m)))),
+    tl.mode !== 'all' && h('div', { class: 'row spread' },
       h('button', { type: 'button', class: 'btn quiet compact', 'aria-label': 'Previous ' + tl.mode, onclick: () => shift(-1) }, '‹'),
       h('h3', { style: 'margin:0;text-align:center;flex:1' }, title),
       h('button', { type: 'button', class: 'btn quiet compact', 'aria-label': 'Next ' + tl.mode, onclick: () => shift(1) }, '›')),
     state.scans.length ? body : h('div', { class: 'panel stack' }, h('p', {}, 'No scans yet. Your first scan will appear here.'), h('div', {}, h('button', { type: 'button', class: 'btn', onclick: () => beginScan() }, 'Start a scan'))),
-    h('p', { class: 'muted small' }, 'Colors show your score, based on your What matters settings. Only you can see your history.')
+    h('p', { class: 'muted small' }, 'Each box shows your score and its level: yellow is Good, gray is Caution, dark slate is Poor. Scores use your What matters settings. Only you can see your history.')
   ];
 }
 

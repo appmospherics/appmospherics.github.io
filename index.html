@@ -568,7 +568,7 @@ function pearson(xs, ys) {
 }
 const linkStrength = r => !isNum(r) ? null : Math.abs(r) >= 0.5 ? 'strong' : Math.abs(r) >= 0.3 ? 'moderate' : Math.abs(r) >= 0.15 ? 'some' : 'little';
 function quantile(a, q) { const s = a.slice().sort((x, y) => x - y); const i = (s.length - 1) * q, lo = Math.floor(i), hi = Math.ceil(i); return s[lo] + (s[hi] - s[lo]) * (i - lo); }
-const fitQuadrant = (score, comfort) => score >= CONFIG.PATTERNS.SPLIT ? (comfort >= CONFIG.PATTERNS.SPLIT ? 'match' : 'hidden') : (comfort >= CONFIG.PATTERNS.SPLIT ? 'despite' : 'avoid');
+const fitQuadrant = (score, comfort) => score >= CONFIG.STOPLIGHT.GREEN_MIN ? (comfort >= CONFIG.PATTERNS.SPLIT ? 'match' : 'hidden') : (comfort >= CONFIG.PATTERNS.SPLIT ? 'despite' : 'avoid');
 // One point per scan that has both a comfort rating and a place score.
 function patternPoints(scans) {
   return scans.filter(s => isNum(s.overall_comfort)).map(s => {
@@ -1514,10 +1514,10 @@ function fitMapPanel(points) {
   if (hiddenAt.length) lede.push(document.createTextNode(` ${listText(hiddenAt)} measured well but felt off at least once, so something there may not be measured.`));
   if (despiteAt.length) lede.push(document.createTextNode(` ${listText(despiteAt)} measured poorly but felt good.`));
 
-  // The map: four soft tiles split at 50. Only the two clear corners are named (Best fit, Worst fit).
+  // The map: four soft tiles, split at Good (67) for how a place measured and at 50 for how you felt. Only the two clear corners are named (Best fit, Worst fit).
   // One dot per place (its average), except home, where every scan is its own house.
-  const S = CONFIG.PATTERNS.SPLIT;
-  const x = v => v < S ? 40 + (v / S) * 133 : 205 + ((v - S) / (100 - S)) * 133;
+  const S = CONFIG.PATTERNS.SPLIT, G = CONFIG.STOPLIGHT.GREEN_MIN; // felt-good line at 50; measured-well line at Good (67)
+  const x = v => v < G ? 40 + (v / G) * 133 : 205 + ((v - G) / (100 - G)) * 133;
   const y = v => v >= S ? 202 - ((v - S) / (100 - S)) * 140 : 400 - (v / S) * 140;
   const svg = svgNode('svg', { viewBox: '0 0 350 420', role: 'img', 'aria-label': 'Your places, placed by how each measured and how you felt there' });
   [[28, 24, 'var(--bg)'], [193, 24, 'var(--brand)'], [28, 222, 'var(--grid)'], [193, 222, 'var(--bg)']].forEach(([rx, ry, f]) =>
@@ -1544,7 +1544,7 @@ function fitMapPanel(points) {
       h('button', { type: 'button', class: 'linkbtn', onclick: () => go('result', { id: p.scan.scan_id }) }, m.home || m.ps.length === 1 ? 'Open this scan' : 'Open the latest scan'));
   };
   const nodes = marks.map(m => {
-    const cx = x(m.score), cy = y(m.comfort), onb = m.score >= S && m.comfort >= S ? ' onbrand' : '';
+    const cx = x(m.score), cy = y(m.comfort), onb = m.score >= G && m.comfort >= S ? ' onbrand' : '';
     const node = m.home
       ? svgNode('path', { class: 'pt home' + onb, d: `M${cx - 8} ${cy}L${cx} ${cy - 8}L${cx + 8} ${cy}V${cy + 8}H${cx - 8}Z` })
       : svgNode('circle', { class: 'pt' + onb, cx, cy, r: 6.5 });
@@ -1555,7 +1555,7 @@ function fitMapPanel(points) {
     node.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     svg.append(node);
     if (!m.home) {
-      const right = m.score >= S ? cx > 271 : cx > 106; // label away from the tile edge
+      const right = m.score >= G ? cx > 271 : cx > 106; // label away from the tile edge
       svg.append(svgNode('text', { class: 'ptlabel' + onb, x: right ? cx - 11 : cx + 11, y: cy + 4, 'text-anchor': right ? 'end' : 'start' }, m.name.length > 18 ? m.name.slice(0, 17) + '…' : m.name));
     }
     return { node, m, pick };

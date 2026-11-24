@@ -6,7 +6,7 @@
 <title>appmospherics</title>
 <meta name="description" content="Learn your best environment. Measure the places you spend time and see which ones support you.">
 <meta name="theme-color" content="#F7F5F9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1A1820" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1E1A25" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -21,14 +21,14 @@
 <style>
 :root {
   --bg: #F7F5F9; --surface: #FFFFFF; --ink: #2E2C29; --muted: #5F5A66; --line: #E6E1EC;
-  --accent: #4B3478; --accent-ink: #FFFFFF; --accent-soft: #EFE6FA;
+  --accent: #3E2D5C; --accent-ink: #FFFFFF; --accent-soft: #ECE6F3;
   /* Score scale, light to dusk: Good is the pale Sky lavender, Caution a violet-gray, Poor deep dusk. Words always go with the colors. */
-  --green: #E7C6F6; --amber: #9C93AB; --red: #2E2840; --none: #D9D4E0; --none-ink: #2E2C29;
-  --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #6B6862;
+  --green: #CDBBDD; --amber: #9A97A0; --red: #3A3940; --none: #DAD6DF; --none-ink: #2E2C29;
+  --brand: #CDBBDD; --brand-ink: #2E2C29; --wm-light: #6B6862;
   /* Patterns: only Good match is filled (Sky); the other quadrants stay quiet */
-  --grid: #ECE7F1; --worst: #E3E2E1; --band: rgba(231,198,246,0.55); --flag: #2E2840;
+  --grid: #ECE7F1; --worst: #E3E2E1; --band: rgba(205,187,221,0.55); --flag: #3A3940;
   --q-match: #2E2C29; --q-hidden: #5F5A66; --q-despite: #5F5A66; --q-avoid: #5F5A66;
-  --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #ECE7F1;
+  --q-match-tint: #CDBBDD; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #ECE7F1;
   --display: "Archivo", "Atkinson Hyperlegible", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
@@ -38,24 +38,24 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1A1820; --surface: #26232D; --ink: #F3EFF7; --muted: #B8AFC4; --line: #3A3543;
-    --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
-    --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
-    --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-    --grid: #322E3A; --worst: #343336; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+    --bg: #1E1A25; --surface: #2A2533; --ink: #F3EFF7; --muted: #C2B9CE; --line: #3A3445;
+    --accent: #D2BDF0; --accent-ink: #1E1A25; --accent-soft: #3A3148;
+    --green: #CDBBDD; --amber: #A3A0A8; --red: #4A4950; --none: #4A4553; --none-ink: #F3EFF7;
+    --brand: #CDBBDD; --brand-ink: #2E2C29; --wm-light: #ABA79F;
+    --grid: #322E3A; --worst: #343336; --band: rgba(205,187,221,0.3); --flag: #D9CCEB;
     --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
-    --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
+    --q-match-tint: #CDBBDD; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1A1820; --surface: #26232D; --ink: #F3EFF7; --muted: #B8AFC4; --line: #3A3543;
-  --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
-  --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
-  --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-  --grid: #322E3A; --worst: #343336; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+  --bg: #1E1A25; --surface: #2A2533; --ink: #F3EFF7; --muted: #C2B9CE; --line: #3A3445;
+  --accent: #D2BDF0; --accent-ink: #1E1A25; --accent-soft: #3A3148;
+  --green: #CDBBDD; --amber: #A3A0A8; --red: #4A4950; --none: #4A4553; --none-ink: #F3EFF7;
+  --brand: #CDBBDD; --brand-ink: #2E2C29; --wm-light: #ABA79F;
+  --grid: #322E3A; --worst: #343336; --band: rgba(205,187,221,0.3); --flag: #D9CCEB;
   --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
-  --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
+  --q-match-tint: #CDBBDD; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -165,12 +165,12 @@ details.more .inside { padding-bottom: 14px; }
 .ring.red .core { fill: color-mix(in srgb, var(--red) 18%, var(--surface)); }
 .ring-button { background: none; border: 0; padding: 0; cursor: pointer; display: block; border-radius: 50%; }
 /* Home: a soft horizon below the header (the header itself stays on the plain page): sky, blush, a thin streak of light. Decorative only. */
-body.ambient::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 560px; z-index: 0; pointer-events: none;
-  background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(231,198,246,0.95) 140px, rgba(251,233,246,0.9) 210px, rgba(255,243,204,0.85) 240px, rgba(251,233,246,0.5) 280px, rgba(247,245,249,0) 430px); }
+body.ambient::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 600px; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, #D4C4E6 130px, #E2D6EE 230px, #F1E3EC 322px, #F7E6CC 350px, #EFE6F4 366px, rgba(247,245,249,0) 470px); }
 body.ambient .app { position: relative; z-index: 1; }
 body.ambient .topbar { background: transparent; position: relative; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(122,86,180,0.55) 140px, rgba(190,130,200,0.22) 220px, rgba(255,236,190,0.07) 245px, rgba(26,24,32,0) 380px); } }
-:root[data-theme="dark"] body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(122,86,180,0.55) 140px, rgba(190,130,200,0.22) 220px, rgba(255,236,190,0.07) 245px, rgba(26,24,32,0) 380px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, #3B3052 130px, #4E3F68 240px, #6E5B8A 325px, #9A82AE 352px, rgba(30,26,37,0) 430px); } }
+:root[data-theme="dark"] body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, #3B3052 130px, #4E3F68 240px, #6E5B8A 325px, #9A82AE 352px, rgba(30,26,37,0) 430px); }
 .home-title { font-size: clamp(32px, 9vw, 40px); margin-top: 96px; line-height: 1.05; }
 .home-sub { font-size: 17px; color: var(--muted); max-width: 30ch; margin: 0; }
 
@@ -279,13 +279,15 @@ button.scorechip { cursor: pointer; }
 <div class="app">
   <header class="topbar">
     <div class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><defs>
-<linearGradient id="amk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7C6F6"/><stop offset="0.5" stop-color="#FBE9F6"/><stop offset="0.6" stop-color="#E9B4E0"/><stop offset="1" stop-color="#A97BDA"/></linearGradient>
-<filter id="amh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
-<filter id="ams" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
-<filter id="amt" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+<linearGradient id="ams" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9A6D6"/><stop offset="0.6" stop-color="#D7C6E6"/><stop offset="1" stop-color="#EED7E3"/></linearGradient>
+<linearGradient id="amg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C83B8"/><stop offset="1" stop-color="#4F3C6E"/></linearGradient>
+<filter id="amb" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>
+<filter id="amb2" x="-20%" y="-400%" width="140%" height="900%"><feGaussianBlur stdDeviation="5"/></filter>
 <clipPath id="amc"><rect width="100" height="100" rx="22"/></clipPath></defs>
-<g clip-path="url(#amc)"><rect width="100" height="100" fill="url(#amk)"/><ellipse cx="62" cy="55" rx="60" ry="6" fill="#FFF6D2" filter="url(#amt)"/><ellipse cx="72" cy="56" rx="34" ry="3" fill="#F7D46E" filter="url(#amt)"/><ellipse cx="20" cy="54" rx="26" ry="5" fill="#F2A7C9" opacity="0.8" filter="url(#ams)"/></g>
-<g transform="translate(16 -18)"><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#FCE7A6" fill-rule="evenodd" filter="url(#amh)" transform="translate(0 1)"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#2E2C29" fill-rule="evenodd"/></g></svg><div><p class="wordmark">app<span>mospherics</span></p></div></div>
+<g clip-path="url(#amc)"><rect width="100" height="58" fill="url(#ams)"/><rect y="58" width="100" height="42" fill="url(#amg)"/>
+<rect x="-10" y="53" width="120" height="8" fill="#F6E3BC" opacity="0.55" filter="url(#amb2)"/>
+<rect x="0" y="56.8" width="100" height="2.2" fill="#F6E3BC" filter="url(#amb)"/></g>
+<path transform="translate(52 58) scale(1.15)" d="M0 0 C-4 -9 -10 -18 -10 -28 a10 10 0 0 1 20 0 c0 10 -6 19 -10 28z M0 -24 a4 4 0 1 0 0 -8 a4 4 0 1 0 0 8z" fill="#2B2433" fill-rule="evenodd"/></svg><div><p class="wordmark">app<span>mospherics</span></p></div></div>
     <span class="mode-note" id="modeNote"></span>
   </header>
   <main id="view"></main>
@@ -311,7 +313,7 @@ button.scorechip { cursor: pointer; }
    ===================================================================== */
 // === CONFIG START
 const CONFIG = {
-  APP_VERSION: '2.0.0-alpha.21',
+  APP_VERSION: '2.0.0-alpha.22',
 
   // Paste your Google Apps Script web app URL here (see the setup guide).
   // Leave empty to run in demo mode: scans are saved on this phone only.
@@ -1455,7 +1457,7 @@ routes.result = ({ id }) => {
     h('p', { class: 'muted' }, s.place ? s.place.type : 'Private place'),
     h('div', { class: 'ring-wrap' }, r.node),
     h('div', { class: 'row middle' }, h('span', { class: 'pill' }, h('span', { class: 'dot ' + sc.yourLight, 'aria-hidden': 'true' }), `Your score ${sc.yourScore == null ? '–' : sc.yourScore + ' · ' + lightWord(sc.yourLight)}`)),
-    h('p', { class: 'muted small center', style: 'margin-top:10px' }, 'The large number weighs every measure equally, the same for everyone. Your score uses your What matters settings. Lavender means a place supports you; gray and deep violet mean it costs you something. Cutoffs are provisional.'),
+    h('p', { class: 'muted small center', style: 'margin-top:10px' }, 'The large number weighs every measure equally, the same for everyone. Your score uses your What matters settings. Lavender means a place supports you; gray and charcoal mean it costs you something. Cutoffs are provisional.'),
     h('div', { class: 'stack block-gap' },
       sc.hazards.map(t => h('p', { class: 'notice hazard' }, h('strong', {}, 'Hazard: scored Poor. '), t)),
       sc.placeScore == null && h('p', { class: 'notice' }, 'There isn’t enough here to score. Answer more questions next time.'),
@@ -1695,7 +1697,7 @@ function calendarView(redraw) {
       h('h3', { style: 'margin:0;text-align:center;flex:1' }, title),
       h('button', { type: 'button', class: 'btn quiet compact', 'aria-label': 'Next ' + tl.mode, onclick: () => shift(1) }, '›')),
     state.scans.length ? body : h('div', { class: 'panel stack' }, h('p', {}, 'No scans yet. Your first scan will appear here.'), h('div', {}, h('button', { type: 'button', class: 'btn', onclick: () => beginScan() }, 'Start a scan'))),
-    h('p', { class: 'muted small' }, 'Each box shows your score and its level: lavender is Good, gray is Caution, deep violet is Poor. Scores use your What matters settings. Only you can see your history.')
+    h('p', { class: 'muted small' }, 'Each box shows your score and its level: lavender is Good, gray is Caution, charcoal is Poor. Scores use your What matters settings. Only you can see your history.')
   ];
 }
 

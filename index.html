@@ -26,7 +26,7 @@
   --green: #E7C6F6; --amber: #9C93AB; --red: #2E2840; --none: #D9D4E0; --none-ink: #2E2C29;
   --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #6B6862;
   /* Patterns: only Good match is filled (Sky); the other quadrants stay quiet */
-  --grid: #ECE7F1; --band: rgba(231,198,246,0.55); --flag: #2E2840;
+  --grid: #ECE7F1; --worst: #E3E2E1; --band: rgba(231,198,246,0.55); --flag: #2E2840;
   --q-match: #2E2C29; --q-hidden: #5F5A66; --q-despite: #5F5A66; --q-avoid: #5F5A66;
   --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #ECE7F1;
   --display: "Archivo", "Atkinson Hyperlegible", system-ui, sans-serif;
@@ -42,7 +42,7 @@
     --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
     --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
     --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-    --grid: #322E3A; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+    --grid: #322E3A; --worst: #343336; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
     --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
     --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
     color-scheme: dark;
@@ -53,7 +53,7 @@
   --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
   --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
   --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-  --grid: #322E3A; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+  --grid: #322E3A; --worst: #343336; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
   --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
   --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
   color-scheme: dark;
@@ -1531,7 +1531,7 @@ function fitMapPanel(points) {
   const x = v => v < G ? 40 + (v / G) * 133 : 205 + ((v - G) / (100 - G)) * 133;
   const y = v => v >= S ? 202 - ((v - S) / (100 - S)) * 140 : 400 - (v / S) * 140;
   const svg = svgNode('svg', { viewBox: '0 0 350 420', role: 'img', 'aria-label': 'Your places, placed by how each measured and how you felt there' });
-  [[28, 24, 'var(--bg)'], [193, 24, 'var(--brand)'], [28, 222, 'var(--grid)'], [193, 222, 'var(--bg)']].forEach(([rx, ry, f]) =>
+  [[28, 24, 'var(--bg)'], [193, 24, 'var(--brand)'], [28, 222, 'var(--worst)'], [193, 222, 'var(--bg)']].forEach(([rx, ry, f]) =>
     svg.append(svgNode('rect', { x: rx, y: ry, width: 157, height: 190, rx: 16, style: `fill:${f}` })));
   svg.append(svgNode('text', { class: 'tilelabel', x: 205, y: 48, style: 'fill:#2E2C29' }, 'Best fit'));
   svg.append(svgNode('text', { class: 'tilelabel', x: 40, y: 246 }, 'Worst fit'));

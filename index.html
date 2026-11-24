@@ -326,7 +326,7 @@ const CONFIG = {
   // Good = at or below WELL's average-level (Leq) limit; Caution = up to WELL's maximum-level (Lmax) limit;
   // Poor = above that. NIOSH 85 dBA is the automatic red everywhere.
   SOUND: {
-    CAL_OFFSET_DB: 110,      // Calibrate: meter dBA minus raw dBFS (see the setup guide)
+    CAL_OFFSET_DB: 99,       // Calibrated Nov 2026 (Android): quiet 99.2, loud 99.9; washer 93.8 excluded as low-frequency rumble
     SAMPLE_SECONDS: 5,
     WARMUP_MS: 400,          // ignore the microphone's first moments
     CATEGORIES: {

@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>appmospherics</title>
 <meta name="description" content="Learn your best environment. Measure the places you spend time and see which ones support you.">
-<meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F7F5F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1820" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -20,15 +20,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #F6F5F1; --surface: #FFFFFF; --ink: #2E2C29; --muted: #5F5C56; --line: #E4E2DC;
-  --accent: #2E2C29; --accent-ink: #F6F5F1; --accent-soft: #FBEFC6;
-  /* Score scale: one bright state and two shades. Good is butter yellow, Caution is gray, Poor is deep slate. */
-  --green: #F6CE4E; --amber: #9A978F; --red: #1C2430; --none: #C9C6BE; --none-ink: #2E2C29;
-  --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #6B6862;
-  /* Patterns: only Good match is filled (butter); the other quadrants stay quiet */
-  --grid: #ECEAE4; --band: rgba(246,206,78,0.5); --flag: #1C2430;
-  --q-match: #2E2C29; --q-hidden: #5F5C56; --q-despite: #5F5C56; --q-avoid: #5F5C56;
-  --q-match-tint: #F6CE4E; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #ECEAE4;
+  --bg: #F7F5F9; --surface: #FFFFFF; --ink: #2E2C29; --muted: #5F5A66; --line: #E6E1EC;
+  --accent: #4B3478; --accent-ink: #FFFFFF; --accent-soft: #EFE6FA;
+  /* Score scale, light to dusk: Good is the pale Sky lavender, Caution a violet-gray, Poor deep dusk. Words always go with the colors. */
+  --green: #E7C6F6; --amber: #9C93AB; --red: #2E2840; --none: #D9D4E0; --none-ink: #2E2C29;
+  --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #6B6862;
+  /* Patterns: only Good match is filled (Sky); the other quadrants stay quiet */
+  --grid: #ECE7F1; --band: rgba(231,198,246,0.55); --flag: #2E2840;
+  --q-match: #2E2C29; --q-hidden: #5F5A66; --q-despite: #5F5A66; --q-avoid: #5F5A66;
+  --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #ECE7F1;
   --display: "Archivo", "Atkinson Hyperlegible", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
@@ -38,24 +38,24 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1C1B19; --surface: #262522; --ink: #EDEBE6; --muted: #ABA79F; --line: #3A3835;
-    --accent: #F6CE4E; --accent-ink: #1C1B19; --accent-soft: #4A4127;
-    --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955; --none-ink: #F2F1EC;
-    --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-    --grid: #33312E; --band: rgba(246,206,78,0.35); --flag: #C9D2E3;
-    --q-match: #2E2C29; --q-hidden: #ABA79F; --q-despite: #ABA79F; --q-avoid: #ABA79F;
-    --q-match-tint: #F6CE4E; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #33312E;
+    --bg: #1A1820; --surface: #26232D; --ink: #F3EFF7; --muted: #B8AFC4; --line: #3A3543;
+    --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
+    --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
+    --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
+    --grid: #322E3A; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+    --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
+    --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1C1B19; --surface: #262522; --ink: #EDEBE6; --muted: #ABA79F; --line: #3A3835;
-  --accent: #F6CE4E; --accent-ink: #1C1B19; --accent-soft: #4A4127;
-  --green: #F6CE4E; --amber: #A5A29A; --red: #4A5568; --none: #5C5955; --none-ink: #F2F1EC;
-  --brand: #F6CE4E; --brand-ink: #2E2C29; --wm-light: #ABA79F;
-  --grid: #33312E; --band: rgba(246,206,78,0.35); --flag: #C9D2E3;
-  --q-match: #2E2C29; --q-hidden: #ABA79F; --q-despite: #ABA79F; --q-avoid: #ABA79F;
-  --q-match-tint: #F6CE4E; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #33312E;
+  --bg: #1A1820; --surface: #26232D; --ink: #F3EFF7; --muted: #B8AFC4; --line: #3A3543;
+  --accent: #C9A8F0; --accent-ink: #1A1820; --accent-soft: #3A3148;
+  --green: #E7C6F6; --amber: #A39BB0; --red: #5A4E70; --none: #4A4553; --none-ink: #F3EFF7;
+  --brand: #E7C6F6; --brand-ink: #2E2C29; --wm-light: #ABA79F;
+  --grid: #322E3A; --band: rgba(231,198,246,0.3); --flag: #D9CCEB;
+  --q-match: #2E2C29; --q-hidden: #B8AFC4; --q-despite: #B8AFC4; --q-avoid: #B8AFC4;
+  --q-match-tint: #E7C6F6; --q-hidden-tint: transparent; --q-despite-tint: transparent; --q-avoid-tint: #322E3A;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -73,7 +73,7 @@ h1:focus { outline: none; }
 .app { max-width: 560px; margin: 0 auto; padding: 0 20px 120px; }
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; align-items: center; justify-content: space-between; padding: 14px 0 10px; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand svg { width: 34px; height: 34px; flex: none; border-radius: 8px; box-shadow: 0 0 0 1px var(--grid, #E4E2DC); }
+.brand svg { width: 34px; height: 34px; flex: none; border-radius: 8px; }
 .wordmark { font-family: var(--display); font-weight: 500; font-stretch: 85%; font-size: 26px; line-height: 1; letter-spacing: -0.015em; margin: 0; color: var(--wm-light); }
 .wordmark span { color: var(--ink); font-weight: 800; }
 .tagline { display: block; font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: var(--muted); margin-top: 3px; }
@@ -164,13 +164,13 @@ details.more .inside { padding-bottom: 14px; }
 .ring.yellow .core { fill: color-mix(in srgb, var(--amber) 24%, var(--surface)); }
 .ring.red .core { fill: color-mix(in srgb, var(--red) 18%, var(--surface)); }
 .ring-button { background: none; border: 0; padding: 0; cursor: pointer; display: block; border-radius: 50%; }
-/* Home: a soft wash of warm light behind the top of the screen. Decorative only. */
+/* Home: a soft horizon below the header (the header itself stays on the plain page): sky, blush, a thin streak of light. Decorative only. */
 body.ambient::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 560px; z-index: 0; pointer-events: none;
-  background: radial-gradient(ellipse 70% 60% at 82% 12%, rgba(246,206,78,0.55), rgba(246,206,78,0) 70%), radial-gradient(ellipse 55% 40% at 10% 62%, rgba(246,206,78,0.22), rgba(246,206,78,0) 70%); }
+  background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(231,198,246,0.95) 140px, rgba(251,233,246,0.9) 210px, rgba(255,243,204,0.85) 240px, rgba(251,233,246,0.5) 280px, rgba(247,245,249,0) 430px); }
 body.ambient .app { position: relative; z-index: 1; }
 body.ambient .topbar { background: transparent; position: relative; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.ambient::before { opacity: 0.45; } }
-:root[data-theme="dark"] body.ambient::before { opacity: 0.45; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(122,86,180,0.55) 140px, rgba(190,130,200,0.22) 220px, rgba(255,236,190,0.07) 245px, rgba(26,24,32,0) 380px); } }
+:root[data-theme="dark"] body.ambient::before { background: linear-gradient(180deg, var(--bg) 0px, var(--bg) 64px, rgba(122,86,180,0.55) 140px, rgba(190,130,200,0.22) 220px, rgba(255,236,190,0.07) 245px, rgba(26,24,32,0) 380px); }
 .home-title { font-size: clamp(32px, 9vw, 40px); margin-top: 96px; line-height: 1.05; }
 .home-sub { font-size: 17px; color: var(--muted); max-width: 30ch; margin: 0; }
 
@@ -279,11 +279,13 @@ button.scorechip { cursor: pointer; }
 <div class="app">
   <header class="topbar">
     <div class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><defs>
-<radialGradient id="ama" cx="0.74" cy="0.3" r="0.7"><stop offset="0" stop-color="#F9DC7E"/><stop offset="0.5" stop-color="#F3C83E"/><stop offset="1" stop-color="#F3C83E" stop-opacity="0"/></radialGradient>
-<radialGradient id="amb" cx="0.2" cy="0.85" r="0.38"><stop offset="0" stop-color="#F3C83E" stop-opacity="0.72"/><stop offset="1" stop-color="#F3C83E" stop-opacity="0"/></radialGradient>
-<radialGradient id="amg" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F3C83E"/><stop offset="1" stop-color="#F3C83E" stop-opacity="0"/></radialGradient>
-<filter id="amh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
-<clipPath id="amc"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#amc)"><rect width="100" height="100" fill="#FFFFFF"/><rect width="100" height="100" fill="url(#ama)"/></g><g transform="translate(16 -16)"><ellipse cx="44" cy="80" rx="14" ry="5" fill="url(#amg)" opacity="0.85"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#F3C83E" fill-rule="evenodd" filter="url(#amh)" transform="translate(0 1)"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#2E2C29" fill-rule="evenodd"/></g></svg><div><p class="wordmark">app<span>mospherics</span></p><span class="tagline">READ THE ROOM</span></div></div>
+<linearGradient id="amk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7C6F6"/><stop offset="0.5" stop-color="#FBE9F6"/><stop offset="0.6" stop-color="#E9B4E0"/><stop offset="1" stop-color="#A97BDA"/></linearGradient>
+<filter id="amh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+<filter id="ams" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+<filter id="amt" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+<clipPath id="amc"><rect width="100" height="100" rx="22"/></clipPath></defs>
+<g clip-path="url(#amc)"><rect width="100" height="100" fill="url(#amk)"/><ellipse cx="62" cy="55" rx="60" ry="6" fill="#FFF6D2" filter="url(#amt)"/><ellipse cx="72" cy="56" rx="34" ry="3" fill="#F7D46E" filter="url(#amt)"/><ellipse cx="20" cy="54" rx="26" ry="5" fill="#F2A7C9" opacity="0.8" filter="url(#ams)"/></g>
+<g transform="translate(16 -18)"><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#FCE7A6" fill-rule="evenodd" filter="url(#amh)" transform="translate(0 1)"/><path d="M44 80s-17-15-17-29a17 17 0 0 1 34 0c0 14-17 29-17 29z M44 57a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#2E2C29" fill-rule="evenodd"/></g></svg><div><p class="wordmark">app<span>mospherics</span></p></div></div>
     <span class="mode-note" id="modeNote"></span>
   </header>
   <main id="view"></main>
@@ -309,7 +311,7 @@ button.scorechip { cursor: pointer; }
    ===================================================================== */
 // === CONFIG START
 const CONFIG = {
-  APP_VERSION: '2.0.0-alpha.20',
+  APP_VERSION: '2.0.0-alpha.21',
 
   // Paste your Google Apps Script web app URL here (see the setup guide).
   // Leave empty to run in demo mode: scans are saved on this phone only.
@@ -430,7 +432,7 @@ function soundTier(db, category) {
   if (db <= c.CAUTION_MAX) return 'Caution';
   return 'Poor';
 }
-// Good = 100. Caution slides 66 to 34 (yellow). Poor slides 33 to 0 (red).
+// Good = 100. Caution slides 66 to 34. Poor slides 33 to 0.
 function soundPoints(db, category) {
   if (!isNum(db)) return null;
   const S = CONFIG.SOUND, c = S.CATEGORIES[category || S.DEFAULT_CATEGORY];
@@ -1136,7 +1138,7 @@ function onboard() {
   if (!state.consented) {
     return mount(null, h('section', { class: 'stack' },
       h('h1', {}, 'Before you start'),
-      h('p', {}, 'Read the room. appmospherics helps you discover which environments help you feel your best.'),
+      h('p', {}, 'appmospherics helps you discover which environments help you feel your best.'),
       h('div', { class: 'panel' }, h('ul', { class: 'keypoints' },
         h('li', {}, h('strong', {}, 'No name, email or login. '), 'Your scans are linked to a random code, not to you.'),
         h('li', {}, h('strong', {}, 'No audio or images are saved. '), 'Room readings use the microphone and camera for a few seconds and keep only the sound and light levels.'),
@@ -1453,7 +1455,7 @@ routes.result = ({ id }) => {
     h('p', { class: 'muted' }, s.place ? s.place.type : 'Private place'),
     h('div', { class: 'ring-wrap' }, r.node),
     h('div', { class: 'row middle' }, h('span', { class: 'pill' }, h('span', { class: 'dot ' + sc.yourLight, 'aria-hidden': 'true' }), `Your score ${sc.yourScore == null ? '–' : sc.yourScore + ' · ' + lightWord(sc.yourLight)}`)),
-    h('p', { class: 'muted small center', style: 'margin-top:10px' }, 'The large number weighs every measure equally, the same for everyone. Your score uses your What matters settings. Yellow means a place supports you; gray and slate mean it costs you something. Cutoffs are provisional.'),
+    h('p', { class: 'muted small center', style: 'margin-top:10px' }, 'The large number weighs every measure equally, the same for everyone. Your score uses your What matters settings. Lavender means a place supports you; gray and deep violet mean it costs you something. Cutoffs are provisional.'),
     h('div', { class: 'stack block-gap' },
       sc.hazards.map(t => h('p', { class: 'notice hazard' }, h('strong', {}, 'Hazard: scored Poor. '), t)),
       sc.placeScore == null && h('p', { class: 'notice' }, 'There isn’t enough here to score. Answer more questions next time.'),
@@ -1693,7 +1695,7 @@ function calendarView(redraw) {
       h('h3', { style: 'margin:0;text-align:center;flex:1' }, title),
       h('button', { type: 'button', class: 'btn quiet compact', 'aria-label': 'Next ' + tl.mode, onclick: () => shift(1) }, '›')),
     state.scans.length ? body : h('div', { class: 'panel stack' }, h('p', {}, 'No scans yet. Your first scan will appear here.'), h('div', {}, h('button', { type: 'button', class: 'btn', onclick: () => beginScan() }, 'Start a scan'))),
-    h('p', { class: 'muted small' }, 'Each box shows your score and its level: yellow is Good, gray is Caution, dark slate is Poor. Scores use your What matters settings. Only you can see your history.')
+    h('p', { class: 'muted small' }, 'Each box shows your score and its level: lavender is Good, gray is Caution, deep violet is Poor. Scores use your What matters settings. Only you can see your history.')
   ];
 }
 
@@ -1838,7 +1840,7 @@ routes.measures = () => {
         'The 0–100 stress level shown on a Garmin watch, scored using Garmin’s own bands: resting (0–25) and low (26–50) count as Good, medium (51–75) as Caution, and high (76–100) as Poor.',
         'Source: Garmin’s own stress measure, which is based on heart rate variability.')),
     h('div', { class: 'panel stack' }, h('h3', {}, 'How the score works'),
-      h('p', {}, `Each measure becomes 0–100 points, and the place score is their average, with every measure counting equally for everyone. Your score uses your What matters settings instead. Green is ${T.GREEN_MIN} and up, yellow ${T.YELLOW_MIN}–${T.GREEN_MIN - 1}, red below ${T.YELLOW_MIN}. These cutoffs are provisional until there is enough data to set them.`),
+      h('p', {}, `Each measure becomes 0–100 points, and the place score is their average, with every measure counting equally for everyone. Your score uses your What matters settings instead. Good is ${T.GREEN_MIN} and up, Caution ${T.YELLOW_MIN}–${T.GREEN_MIN - 1}, Poor below ${T.YELLOW_MIN}. These cutoffs are provisional until there is enough data to set them.`),
       h('p', {}, `A scan is low confidence when fewer than ${CONFIG.LOW_CONFIDENCE_MIN_ANSWERED} of the 9 scored measures are answered. Phone readings are estimates and vary between phone models.`)),
     h('button', { type: 'button', class: 'btn quiet wide', onclick: back }, 'Back')));
 };
